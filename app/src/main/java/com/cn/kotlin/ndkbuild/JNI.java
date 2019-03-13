@@ -52,4 +52,6 @@ public class JNI {
         Log.w("返回static======", str);
     }
 
+    public native void addSSS();
+
 }

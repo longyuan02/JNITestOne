@@ -2,14 +2,13 @@
 #include <iostream>
 #include <stdio.h>
 #include <string.h>
-
-#include  <android/log.h>  
-#define  LOG_TAG "BT" 
-#define  LOGD(...)  __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__)  // 定义LOGD类型
-#define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)   // 定义LOGI类型
-#define  LOGW(...)  __android_log_print(ANDROID_LOG_WARN, LOG_TAG, __VA_ARGS__)   // 定义LOGW类型
-#define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)  // 定义LOGE类型
-#define  LOGF(...)  __android_log_print(ANDROID_LOG_FATAL, LOG_TAG, __VA_ARGS__)  // 定义LOGF类
+#include <android/log.h>
+#define LOG_TAG "BT"
+#define LOGD(...)__android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__) // 定义LOGD类型
+#define LOGI(...)__android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)  // 定义LOGI类型
+#define LOGW(...)__android_log_print(ANDROID_LOG_WARN, LOG_TAG, __VA_ARGS__)  // 定义LOGW类型
+#define LOGE(...)__android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__) // 定义LOGE类型
+#define LOGF(...)__android_log_print(ANDROID_LOG_FATAL, LOG_TAG, __VA_ARGS__) // 定义LOGF类
 
 /**
  * 引入jni.h文件 使用相应方法
@@ -90,7 +89,8 @@ extern "C" JNIEXPORT jint JNICALL
 Java_com_cn_kotlin_ndkbuild_JNI_checkPw(JNIEnv *env, jobject job, jstring jstr)
 {
     //服务器返回密码123456  定义一个c char指针字符
-    char *chars = "123456";
+    jstring jss=(*env).NewStringUTF("123456");
+    char* chars=JString2CStr(env,jss);
     // char *chars = JString2CStr(env, origin);
     char *forUser = JString2CStr(env, jstr);
     //函数比较字符串是否相同
